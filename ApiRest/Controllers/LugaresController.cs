@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Core.Interfaces;
 using Infraestructura.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,22 +12,23 @@ namespace ApiRest.Controllers
     [ApiController]
     public class LugaresController : ControllerBase
     {
-        private readonly AppDBContext _db;
-        public LugaresController(AppDBContext db)
+        private readonly ILugarRepository _repo;
+
+        public LugaresController(ILugarRepository repo)
         {
-            _db = db;
+            _repo = repo;
         }
 
         [HttpGet]
         public async Task<ActionResult<List<Lugar>>> getLugares()
         {
-            var places = await _db.Lugar.ToListAsync();
+            var places = await _repo.getLugaresListAsync();
             return Ok(places);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<Lugar>> getLugar(int id)
         {
-            var place = await _db.Lugar.FindAsync(id);
+            var place = await _repo.getLugarAsync(id);
             return Ok(place);   
         }
     }

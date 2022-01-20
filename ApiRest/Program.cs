@@ -1,4 +1,5 @@
 
+using Core.Interfaces;
 using Infraestructura.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,8 +16,28 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ILugarRepository, LugarRepository >();
 
 var app = builder.Build();
+
+//Aplicar las migraciones y hacer un seed a la base de datos
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+    try
+    {
+        var context = services.GetRequiredService<AppDBContext>();
+        await context.Database.MigrateAsync();
+        await SeedDatabase.seedAsync(context,loggerFactory);
+    }
+    catch (System.Exception ex)
+    {
+
+        var logger = loggerFactory.CreateLogger<Program>();
+        logger.LogError(ex, "Error ocurrido durante el proceso de ejecucion");
+    }
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

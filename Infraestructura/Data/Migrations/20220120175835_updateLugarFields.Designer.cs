@@ -2,6 +2,7 @@
 using Infraestructura.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infraestructura.Data.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220120175835_updateLugarFields")]
+    partial class updateLugarFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +49,8 @@ namespace Infraestructura.Data.Migrations
 
                     b.Property<string>("Descripcion")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
 
                     b.Property<string>("GastoAproximado")
                         .IsRequired()

@@ -1,6 +1,7 @@
 ﻿
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Infraestructura.Data
 {
@@ -10,6 +11,14 @@ namespace Infraestructura.Data
         {
         }
 
-        public DbSet <Lugar> Lugar { get; set; }
+        public DbSet<Lugar> Lugar { get; set; }
+        public DbSet<Pais> Pais { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) //Encargado de crear las migraciones
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
     }
 }

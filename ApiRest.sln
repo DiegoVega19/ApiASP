@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiRest", "ApiRest\ApiRest.csproj", "{9FA19932-702A-4EE6-89CB-6D0491D8670B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{871B8641-11DA-4EDE-A64B-C41BE588C03E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{871B8641-11DA-4EDE-A64B-C41BE588C03E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infraestructura", "Infraestructura\Infraestructura.csproj", "{7BF56337-3753-4EE2-A08B-27599BAA104E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infraestructura", "Infraestructura\Infraestructura.csproj", "{7BF56337-3753-4EE2-A08B-27599BAA104E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
